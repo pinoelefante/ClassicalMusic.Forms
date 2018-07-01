@@ -33,7 +33,7 @@
                 </ffimage:CachedImage.Transformations>
             </ffimage:CachedImage>
             <StackLayout Grid.Row="2">
-                <Button Text="Play all" HorizontalOptions="Center" Margin="0,10" BackgroundColor="Transparent" />
+                <Button Text="Play all" Command="{Binding PlayAllCommand}" HorizontalOptions="Center" Margin="0,10" BackgroundColor="Transparent" />
             </StackLayout>
         </Grid>
 

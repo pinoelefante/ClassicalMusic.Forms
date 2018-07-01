@@ -234,6 +234,20 @@ namespace pinoelefante.Converters
             throw new NotImplementedException();
         }
     }
+    public class RadioImageFileConverter : IValueConverter
+    {
+        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            var radio_img = value as string;
+            var file_path = $@"ClassicalMusic.Images.radio.{radio_img}";
+            return new EmbeddedResourceImageSource(file_path, typeof(App).Assembly);
+        }
+
+        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            throw new NotImplementedException();
+        }
+    }
     public class ImageFileConverter : IValueConverter
     {
         private static Random random = new Random();

@@ -10,6 +10,7 @@
 
             <conv:ItemTappedEventArgsConverter x:Key="ItemTappedArgs" />
             <conv:ComposerImageFileConverter x:Key="ComposerImageLoader" />
+            <conv:RadioImageFileConverter x:Key="RadioImageLoader" />
             <conv:ImageFileConverter x:Key="ImageLoader" />
 
             <!--Global Styles-->

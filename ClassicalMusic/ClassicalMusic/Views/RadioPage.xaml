@@ -1,0 +1,31 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<views:MyContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:views="clr-namespace:pinoelefante.Views"
+             xmlns:ffimage="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
+             xmlns:fftrans="clr-namespace:FFImageLoading.Transformations;assembly=FFImageLoading.Transformations"
+             Title="Radio"
+             BindingContext="{Binding RadioVM, Source={StaticResource Locator}}"
+             x:Class="ClassicalMusic.Views.RadioPage">
+    <ContentPage.Content>
+        <ListView ItemsSource="{Binding RadioList}" SeparatorVisibility="None">
+            <ListView.Behaviors>
+                <views:EventToCommandBehavior EventName="ItemTapped" Command="{Binding PlayRadioCommand}" EventArgsConverter="{StaticResource ItemTappedArgs}"/>
+            </ListView.Behaviors>
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <StackLayout HeightRequest="100" Padding="10" Orientation="Horizontal">
+                            <ffimage:CachedImage Source="{Binding Image, Converter={StaticResource RadioImageLoader}}" HeightRequest="80" WidthRequest="80" Aspect="AspectFit" DownsampleToViewSize="True" VerticalOptions="Center">
+                                <ffimage:CachedImage.Transformations>
+                                    <fftrans:CircleTransformation BorderHexColor="#ff0000" BorderSize="10"/>
+                                </ffimage:CachedImage.Transformations>
+                            </ffimage:CachedImage>
+                            <Label Text="{Binding Name}" VerticalOptions="Center"/>
+                        </StackLayout>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+    </ContentPage.Content>
+</views:MyContentPage>
