@@ -1,15 +1,18 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <Application xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:vm="clr-namespace:ClassicalMusic.ViewModels"
+             xmlns:conv="clr-namespace:pinoelefante.Converters"
              x:Class="ClassicalMusic.App">
 	<Application.Resources>
 		<ResourceDictionary>
+            <vm:ViewModelLocator x:Key="Locator" />
+
+            <conv:ItemTappedEventArgsConverter x:Key="ItemTappedArgs" />
+            <conv:ComposerImageFileConverter x:Key="ComposerImageLoader" />
+            <conv:ImageFileConverter x:Key="ImageLoader" />
+
             <!--Global Styles-->
-            <Color x:Key="NavigationPrimary">#2196F3</Color>
-            <Style TargetType="NavigationPage">
-                <Setter Property="BarBackgroundColor" Value="{StaticResource NavigationPrimary}" />
-                <Setter Property="BarTextColor" Value="White" />
-            </Style>
         </ResourceDictionary>
 	</Application.Resources>
 </Application>

@@ -1,0 +1,81 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<views:MyContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:views="clr-namespace:pinoelefante.Views"
+             x:Class="ClassicalMusic.Views.ComposerList"
+             xmlns:ffimage="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
+             xmlns:fftrans="clr-namespace:FFImageLoading.Transformations;assembly=FFImageLoading.Transformations"
+             xmlns:grid="clr-namespace:Plugin.GridViewControl.Common;assembly=Plugin.GridViewControl"
+             BindingContext="{Binding ComposerListVM, Source={StaticResource Locator}}">
+    <ContentPage.Content>
+        <OnPlatform x:TypeArguments="View">
+            <On Platform="iOS">
+                <ListView ItemsSource="{Binding ComposerSimpleList}" IsPullToRefreshEnabled="False" RowHeight="80" SeparatorVisibility="None">
+                    <ListView.Behaviors>
+                        <views:EventToCommandBehavior EventName="ItemTapped" Command="{Binding ItemTappedCommand}" EventArgsConverter="{StaticResource ItemTappedArgs}"/>
+                    </ListView.Behaviors>
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell>
+                                <StackLayout Orientation="Horizontal" VerticalOptions="Center" Padding="10">
+                                    <ffimage:CachedImage Aspect="AspectFit"
+                                                         WidthRequest="64"
+                                                         HeightRequest="64"
+                                                         DownsampleToViewSize="True"
+                                                         Source="{Binding Name, Converter={StaticResource ComposerImageLoader}, ConverterParameter=square}">
+                                        <ffimage:CachedImage.Transformations>
+                                            <fftrans:CircleTransformation BorderHexColor="#ff0000" BorderSize="10"/>
+                                        </ffimage:CachedImage.Transformations>
+                                    </ffimage:CachedImage>
+                                    <Label Text="{Binding Name}" HorizontalOptions="Center" VerticalOptions="Center"/>
+                                </StackLayout>
+                            </ViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+            </On>
+            
+            <On Platform="UWP, Android">
+                <grid:GridView ItemsSource="{Binding Composers}"
+                               HasUnevenRows="True"
+                               IsGroupingEnabled="True"
+                               IsPullToRefreshEnabled="False"
+                               TappedCommand="{Binding ItemTappedCommand}">
+                    <grid:GridView.RowHeight>
+                        <OnPlatform x:TypeArguments="x:Int32" Android="120" Default="-1" />
+                    </grid:GridView.RowHeight>
+                    <grid:GridView.GroupHeaderTemplate>
+                        <DataTemplate>
+                            <grid:GridViewXamlCell>
+                                <Grid Padding="5">
+                                    <Label Text="{Binding ShortName}" FontSize="Large" VerticalTextAlignment="Center" />
+                                </Grid>
+                            </grid:GridViewXamlCell>
+                        </DataTemplate>
+                    </grid:GridView.GroupHeaderTemplate>
+                    <grid:GridView.ItemTemplate>
+                        <DataTemplate>
+                            <grid:GridViewXamlCell>
+                                <StackLayout VerticalOptions="Center" Padding="10">
+                                    <StackLayout.Orientation>
+                                        <OnPlatform x:TypeArguments="StackOrientation" Default="Vertical" iOS="Horizontal"/>
+                                    </StackLayout.Orientation>
+                                    <ffimage:CachedImage Aspect="AspectFit"
+                                             WidthRequest="64"
+                                             HeightRequest="64"
+                                             DownsampleToViewSize="True"
+                                             Source="{Binding Name, Converter={StaticResource ComposerImageLoader}, ConverterParameter=square}">
+                                        <ffimage:CachedImage.Transformations>
+                                            <fftrans:CircleTransformation BorderHexColor="#ff0000" BorderSize="10"/>
+                                        </ffimage:CachedImage.Transformations>
+                                    </ffimage:CachedImage>
+                                    <Label Text="{Binding Name}" HorizontalOptions="Center" VerticalOptions="Center"/>
+                                </StackLayout>
+                            </grid:GridViewXamlCell>
+                        </DataTemplate>
+                    </grid:GridView.ItemTemplate>
+                </grid:GridView>
+            </On>
+        </OnPlatform>
+    </ContentPage.Content>
+</views:MyContentPage>

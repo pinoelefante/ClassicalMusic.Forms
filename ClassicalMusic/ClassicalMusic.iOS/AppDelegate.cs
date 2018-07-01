@@ -22,7 +22,9 @@ namespace ClassicalMusic.iOS
         //
         public override bool FinishedLaunching(UIApplication app, NSDictionary options)
         {
+            FFImageLoading.Forms.Platform.CachedImageRenderer.Init();
             global::Xamarin.Forms.Forms.Init();
+            var x = typeof(Plugin.GridViewControl.iOS.Renderers.GridViewRenderer);
             LoadApplication(new App());
 
             return base.FinishedLaunching(app, options);

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<manifest xmlns:android="http://schemas.android.com/apk/res/android" android:versionCode="1" android:versionName="1.0" package="com.companyname.ClassicalMusic">
-	<uses-sdk android:minSdkVersion="19" android:targetSdkVersion="25" />
+<manifest xmlns:android="http://schemas.android.com/apk/res/android" android:versionCode="1" android:versionName="1.0" package="it.pinoelefante.ClassicalMusic">
+	<uses-sdk android:minSdkVersion="19" android:targetSdkVersion="27" />
 	<application android:label="ClassicalMusic.Android"></application>
 </manifest>
